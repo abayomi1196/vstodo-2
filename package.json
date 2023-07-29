@@ -15,7 +15,13 @@
     "commands": [
       {
         "command": "vstodo-2.helloWorld",
+        "category": "VSTodo-2",
         "title": "Hello World"
+      },
+      {
+        "command": "vstodo-2.askQuestion",
+        "category": "VSTodo-2",
+        "title": "Ask a question"
       }
     ]
   },
