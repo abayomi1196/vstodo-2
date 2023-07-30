@@ -105,6 +105,11 @@ export class HelloWorldPanel {
   }
 
   private _getHtmlForWebview(webview: vscode.Webview) {
+    // add the uri to load this script in the webview
+    const scriptUri = webview.asWebviewUri(
+      vscode.Uri.joinPath(this._extensionUri, "media", "main.js")
+    );
+
     // uri to load css styles into webview
     const stylesResetUri = webview.asWebviewUri(
       vscode.Uri.joinPath(this._extensionUri, "media", "reset.css")
@@ -129,13 +134,13 @@ export class HelloWorldPanel {
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
 				<link href="${stylesResetUri}" rel="stylesheet">
 				<link href="${stylesMainUri}" rel="stylesheet">
-        <script nonce="${nonce}">
-            
-        </script>
+        <script nonce="${nonce}"></script>
 			</head>
       <body>
       <h1>Hello Nonce</h1>
-      <button>hello</button>
+      <button id="button">hello</button>
+
+      <script src="${scriptUri}" nonce="${nonce}"></script>
 			</body>
 			</html>
     `;
