@@ -21,6 +21,7 @@ export default fs
         name: "app",
         file: "out/compiled/" + name + ".js"
       },
+
       plugins: [
         svelte({
           // enable run-time checks when not in production
@@ -32,7 +33,6 @@ export default fs
           },
           preprocess: sveltePreprocess()
         }),
-
         // If you have external dependencies installed from
         // npm, you'll most likely need these plugins. In
         // some cases you'll need additional configuration -

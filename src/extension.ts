@@ -1,9 +1,13 @@
 // The module 'vscode' contains the VS Code extensibility API
 import * as vscode from "vscode";
 import { HelloWorldPanel } from "./HelloWorldPanel";
+import { SidebarProvider } from "./SidebarProvider";
 
 export function activate(context: vscode.ExtensionContext) {
-  console.log('Congratulations, your extension "vstodo-2" is now active!');
+  const sidebarProvider = new SidebarProvider(context.extensionUri);
+  context.subscriptions.push(
+    vscode.window.registerWebviewViewProvider("vstodo-sidebar", sidebarProvider)
+  );
 
   context.subscriptions.push(
     vscode.commands.registerCommand("vstodo-2.helloWorld", () => {
@@ -12,9 +16,15 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   context.subscriptions.push(
-    vscode.commands.registerCommand("vstodo-2.refresh", () => {
-      HelloWorldPanel.kill();
-      HelloWorldPanel.createOrShow(context.extensionUri);
+    vscode.commands.registerCommand("vstodo-2.refresh", async () => {
+      // kill & reopen sidebar
+      // HelloWorldPanel.kill();
+      // HelloWorldPanel.createOrShow(context.extensionUri);
+
+      await vscode.commands.executeCommand("workbench.action.closeSidebar");
+      await vscode.commands.executeCommand(
+        "workbench.view.extension.todo-tree-container"
+      );
     })
   );
 
