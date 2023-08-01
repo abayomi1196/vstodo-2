@@ -1,3 +1,3 @@
 <script lang="ts"></script>
 
-<h1>Hello from SAMMY</h1>
+<h1>Hello for wassup</h1>

@@ -8,7 +8,13 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerCommand("vstodo-2.helloWorld", () => {
       HelloWorldPanel.createOrShow(context.extensionUri);
-      vscode.window.showInformationMessage("Hello from VSTodo-2!");
+    })
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand("vstodo-2.refresh", () => {
+      HelloWorldPanel.kill();
+      HelloWorldPanel.createOrShow(context.extensionUri);
     })
   );
 
