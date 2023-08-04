@@ -1,8 +1,29 @@
+<script lang="ts">
+
+  let todos: Array<{text: string, completed: boolean}> = [];
+  let text = "";
+
+</script>
+
 
 <style>
-  h5 {
-    color: blue;
+  .complete {
+    text-decoration: line-through;
   }
 </style>
 
-<h5>Hello from sidebar which should be green</h5>
+
+<form on:submit|preventDefault={()=> {
+  todos = [{text, completed: false}, ...todos]
+  text = ""
+}}>
+  <input bind:value={text}/>
+</form>
+
+<ul>
+  {#each todos as todo (todo.text)}
+    <li class:complete={todo.completed}
+    on:click={() => todo.completed = !todo.completed}>{todo.text}</li>
+  {/each}
+</ul>
+
