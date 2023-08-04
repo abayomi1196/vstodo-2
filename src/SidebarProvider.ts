@@ -20,6 +20,8 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
     webviewView.webview.html = this._getHtmlForWebview(webviewView.webview);
 
     webviewView.webview.onDidReceiveMessage(async (data) => {
+      console.log(data);
+
       switch (data.type) {
         case "onInfo": {
           if (!data.value) {
@@ -77,6 +79,9 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
 				<link href="${styleVSCodeUri}" rel="stylesheet">
         <link href="${styleMainUri}" rel="stylesheet">
         
+        <script nonce="${nonce}">
+          const tsVscode = acquireVsCodeApi();
+        </script>
 			</head>
       <body>
 				<script nonce="${nonce}" src="${scriptUri}"></script>

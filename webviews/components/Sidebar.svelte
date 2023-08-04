@@ -27,3 +27,15 @@
   {/each}
 </ul>
 
+
+<button on:click={() => {
+  tsVscode.postMessage({type: 'onInfo', value: 'Valuable info message'})
+}}>
+click me for info
+</button>
+
+<button on:click={() => {
+  tsVscode.postMessage({type: 'onError', value: 'Valuable error message'})
+}}>
+click me for error
+</button>
