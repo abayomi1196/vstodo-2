@@ -16,6 +16,26 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   context.subscriptions.push(
+    vscode.commands.registerCommand("vstodo-2.addTodo", () => {
+      const { activeTextEditor } = vscode.window;
+
+      if (!activeTextEditor) {
+        vscode.window.showInformationMessage("No active text editor");
+        return;
+      }
+
+      const selectedText = activeTextEditor.document.getText(
+        activeTextEditor.selection
+      );
+
+      sidebarProvider._view?.webview.postMessage({
+        type: "new-todo",
+        value: selectedText
+      });
+    })
+  );
+
+  context.subscriptions.push(
     vscode.commands.registerCommand("vstodo-2.refresh", async () => {
       // kill & reopen sidebar
       // HelloWorldPanel.kill();

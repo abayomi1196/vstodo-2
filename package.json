@@ -10,7 +10,8 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:vstodo-2:refresh"
+    "onCommand:vstodo-2:refresh",
+    "onCommand:vstodo-2:addTodo"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -49,6 +50,11 @@
         "command": "vstodo-2.refresh",
         "category": "VSTodo-2",
         "title": "Refresh"
+      },
+      {
+        "command": "vstodo-2.addTodo",
+        "category": "VSTodo-2",
+        "title": "Add Todo from selection"
       }
     ]
   },
